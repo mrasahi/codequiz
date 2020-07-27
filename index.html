@@ -10,10 +10,7 @@
     <link rel="stylesheet" href="./assets//css/style.css">
     <title>Code Quiz!</title>
 
-    <style>
 
-
-    </style>
 </head>
 
 <body>
@@ -21,14 +18,15 @@
     <h1 class="text-center mt-5">Code Quiz!</h1>
     <p class="text-center font-italic">-by Makoto Asahi</p>
 
-    <main class="container bg-light px-5 py-3">
+    <!-- <main class="container bg-light px-5 py-3"> -->
+    <main class="jumbotron container">
         <!-- Timer goes here -->
         <p>Code Quiz! Answer the following questions as best as you can. You have 90 seconds for the quiz.
             Incorrect answers will penalize your time. Correct answers will add to your score.
             At the end of the quiz, you can log your highscores on the leaderboard.
         </p>
 
-        <ol class="list-group">
+        <ol class="list-group" id="answerlist">
             <li class="list-group-item q-btn" id="answer-1">
                 Answer 1
             </li>
@@ -74,10 +72,13 @@
     <script>
         
         let score = 0
+        let time = 90
 
         document.getElementById('start').addEventListener('click', event => {
             console.log('start clicked')
-
+            // Gets rid of stuff on the page
+            document.getElementById('start').remove()
+            document.getElementById('answerlist').textContent = ''
 
         })
 
@@ -87,10 +88,29 @@
             }
         })
 
+
+
         document.addEventListener('click', event => {
             if (event.target === document.getElementById('answer-1')) {
                 console.log('this is answer 1')
+                // Function for answer
             }
+
+            if (event.target === document.getElementById('answer-2')) {
+                console.log('this is answer 2')
+                // Function for answer
+            }
+
+            if (event.target === document.getElementById('answer-3')) {
+                console.log('this is answer 3')
+                // Function for answer
+            }
+
+            if (event.target === document.getElementById('answer-4')) {
+                console.log('this is answer 4')
+                // Function for answer
+            }
+
         })
 
 
