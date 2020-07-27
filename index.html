@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="./assets//css/style.css">
     <title>Code Quiz!</title>
 
+    <style>
+        #answerlist {
+            display: none
+        }
+    </style>
 
 </head>
 
@@ -21,7 +26,8 @@
     <!-- <main class="container bg-light px-5 py-3"> -->
     <main class="jumbotron container">
         <!-- Timer goes here -->
-        <p>Code Quiz! Answer the following questions as best as you can. You have 90 seconds for the quiz.
+        <p id="q-prompt">
+            Code Quiz! Answer the following questions as best as you can. You have 90 seconds for the quiz.
             Incorrect answers will penalize your time. Correct answers will add to your score.
             At the end of the quiz, you can log your highscores on the leaderboard.
         </p>
@@ -45,13 +51,13 @@
         <button class="btn btn-lg btn-primary" id="start">Start Quiz</button>
 
 
+
         <!-- Cool progress bar -->
         <!-- <div class="progress">
             <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div> -->
 
     </main>
-
 
     <!-- Bootstrap js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -70,48 +76,133 @@
 
 
     <script>
-        
+
         let score = 0
         let time = 90
+        let randomquestion = []
 
+        // Start Button
         document.getElementById('start').addEventListener('click', event => {
             console.log('start clicked')
             // Gets rid of stuff on the page
             document.getElementById('start').remove()
-            document.getElementById('answerlist').textContent = ''
-
+            document.getElementById('answerlist').style = 'display: block'
+            qrandom()
+            console.log(randomquestion)
+            addq()
         })
 
+        // Add new question and answers
+        function addq() {
+            document.getElementById('q-prompt').textContent = randomquestion.question
+            document.getElementById('answer-1').textContent = randomquestion.choice1
+            document.getElementById('answer-2').textContent = randomquestion.choice2
+            document.getElementById('answer-3').textContent = randomquestion.choice3
+            document.getElementById('answer-4').textContent = randomquestion.choice4
+        }
+
+
+        // Button click debug
+
+        // document.addEventListener('click', event => {
+        //     if (event.target.classList.contains('q-btn')) {
+        //         console.log('button clicked')
+        //     }
+        // })
+
+
+        // Button 1 - 4 clicked
         document.addEventListener('click', event => {
             if (event.target.classList.contains('q-btn')) {
-                console.log('button clicked')
+                if (event.target === document.getElementById('answer-1')) {
+                    console.log('this is answer 1')
+                    answerCheck()
+                }
+                if (event.target === document.getElementById('answer-2')) {
+                    console.log('this is answer 2')
+                    answerCheck()
+                }
+                if (event.target === document.getElementById('answer-3')) {
+                    console.log('this is answer 3')
+                    answerCheck()
+                }
+                if (event.target === document.getElementById('answer-4')) {
+                    console.log('this is answer 4')
+                    answerCheck()
+                }
             }
+            // nextquestion function
+
         })
 
-
-
-        document.addEventListener('click', event => {
-            if (event.target === document.getElementById('answer-1')) {
-                console.log('this is answer 1')
-                // Function for answer
+        // Checks if answer is correct
+        function answerCheck() {
+            if (event.target.textContent === randomquestion.answer) {
+                console.log('correct')
+            } else {
+                console.log('incorrect')
             }
+        }
 
-            if (event.target === document.getElementById('answer-2')) {
-                console.log('this is answer 2')
-                // Function for answer
-            }
+        // Question Qurerry
 
-            if (event.target === document.getElementById('answer-3')) {
-                console.log('this is answer 3')
-                // Function for answer
-            }
+        let q0 = {
+            question: 'What is my name?',
+            choice1: 'Quintin',
+            choice2: 'Calum',
+            choice3: 'Makoto',
+            choice4: 'Big Mike',
+            answer: 'Makoto'
+        }
 
-            if (event.target === document.getElementById('answer-4')) {
-                console.log('this is answer 4')
-                // Function for answer
-            }
+        let q1 = {
+            question: 'What is my last name?',
+            choice1: 'Asahi',
+            choice2: 'Quintin',
+            choice3: 'Calum',
+            choice4: 'Another Mike',
+            answer: 'Asahi',
+        }
 
-        })
+        let q2 = {
+            question: 'What is 2 + 2',
+            choice1: '4',
+            choice2: '2',
+            choice3: '3',
+            choice4: '6',
+            answer: '4',
+        }
+
+        let q3 = {
+            question: 'THE ANSWER IS 2',
+            choice1: 'WRONG 1',
+            choice2: 'YEES',
+            choice3: 'NOO',
+            choice4: 'NOT THIS ONE',
+            answer: 'YEES',
+        }
+
+        // let q = {
+        //     question: '',
+        //     choice1: '',
+        //     choice2: '',
+        //     choice3: '',
+        //     choice4: '',
+        //     answer: '',
+        // }
+
+
+
+        let qlist = [q0, q1, q2, q3]
+
+        // questionquerry randomizer
+        function qrandom() {
+            let i = [Math.floor(Math.random() * qlist.length)]
+            randomquestion = qlist[i]
+            qlist.splice(i, 0)
+        }
+
+
 
 
 
