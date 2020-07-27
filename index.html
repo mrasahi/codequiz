@@ -82,6 +82,11 @@
 
         // Add new question and answers
         function addq() {
+            // if no more questions, return 
+            if (qlist.length === 0) {
+                console.log('no u')
+                return
+            }
             qrandom()
             document.getElementById('q-prompt').textContent = randomquestion.question
             document.getElementById('answer-1').textContent = randomquestion.choice1
@@ -185,9 +190,6 @@
 
         // Question Querry randomizer
         function qrandom() {
-            if (qlist.length === 0) {
-                console.log('no u')
-            }
             let i = [Math.floor(Math.random() * qlist.length)]
             randomquestion = qlist[i]
             qlist.splice(i, 1)
