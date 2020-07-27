@@ -10,11 +10,6 @@
     <link rel="stylesheet" href="./assets//css/style.css">
     <title>Code Quiz!</title>
 
-    <style>
-        #answerlist {
-            display: none
-        }
-    </style>
 
 </head>
 
@@ -32,7 +27,7 @@
             At the end of the quiz, you can log your highscores on the leaderboard.
         </p>
 
-        <ol class="list-group" id="answerlist">
+        <ol class="list-group d-none" id="answerlist">
             <li class="list-group-item q-btn" id="answer-1">
                 Answer 1
             </li>
@@ -71,29 +66,23 @@
         crossorigin="anonymous"></script>
 
 
-
-
-
-
     <script>
 
         let score = 0
         let time = 90
-        let randomquestion = []
+        let randomquestion
 
         // Start Button
         document.getElementById('start').addEventListener('click', event => {
             console.log('start clicked')
-            // Gets rid of stuff on the page
             document.getElementById('start').remove()
-            document.getElementById('answerlist').style = 'display: block'
-            qrandom()
-            console.log(randomquestion)
+            document.getElementById('answerlist').classList.remove('d-none')
             addq()
         })
 
         // Add new question and answers
         function addq() {
+            qrandom()
             document.getElementById('q-prompt').textContent = randomquestion.question
             document.getElementById('answer-1').textContent = randomquestion.choice1
             document.getElementById('answer-2').textContent = randomquestion.choice2
@@ -111,7 +100,7 @@
         // })
 
 
-        // Button 1 - 4 clicked
+        // Answer 1 - 4 clicked
         document.addEventListener('click', event => {
             if (event.target.classList.contains('q-btn')) {
                 if (event.target === document.getElementById('answer-1')) {
@@ -131,8 +120,6 @@
                     answerCheck()
                 }
             }
-            // nextquestion function
-
         })
 
         // Checks if answer is correct
@@ -195,7 +182,7 @@
 
         let qlist = [q0, q1, q2, q3]
 
-        // questionquerry randomizer
+        // Question Querry randomizer
         function qrandom() {
             let i = [Math.floor(Math.random() * qlist.length)]
             randomquestion = qlist[i]
