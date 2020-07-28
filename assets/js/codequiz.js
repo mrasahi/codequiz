@@ -46,6 +46,7 @@ function qrandom() {
     console.log(qlist)
 }
 
+// DOESNT WORK
 // Randomize answer index function
 // function randomanswers() {
 //     for (let i = randomquestion.choices.length; i > 0; i--) {
@@ -84,6 +85,7 @@ function addq() {
 function answerCheck() {
     if (event.target.textContent === randomquestion.answer) {
         console.log('correct')
+        score += 10
     } else {
         console.log('incorrect')
     }
