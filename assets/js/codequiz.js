@@ -29,7 +29,6 @@ let q3 = {
 //     answer: ''
 // }
 
-
 // Declare variables
 let qlist = [q0, q1, q2, q3]
 let score = 0
