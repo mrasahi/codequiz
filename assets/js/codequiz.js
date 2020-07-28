@@ -85,7 +85,6 @@ function addq() {
 function answerCheck() {
     if (event.target.textContent === randomquestion.answer) {
         console.log('correct')
-        score += 10
     } else {
         console.log('incorrect')
     }
