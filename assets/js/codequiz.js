@@ -42,27 +42,31 @@ function qrandom() {
     let i = [Math.floor(Math.random() * qlist.length)]
     randomquestion = qlist[i]
     qlist.splice(i, 1)
-    randomanswers()
+    // randomanswers()
     console.log(qlist)
 }
 
 // Randomize answer index function
-function randomanswers() {
-    for (let i = randomquestion.choices.length; i > 0; i--) {
-        let r = randomquestion.choices[Math.floor(Math.random() * randomquestion.choices.length)]
-        randomanswerlist.push(r)
-        randomquestion.answer = randomquestion.choices.splice(r, '')
-    }
-    randomquestion.choices = randomanswerlist
-    console.log(randomquestion)
-    randomanswerlist = []
-}
+// function randomanswers() {
+//     for (let i = randomquestion.choices.length; i > 0; i--) {
+//         // let r = Math.floor(Math.random() * randomquestion.choices.length)
+//         // randomanswerlist.push(randomquestion.choices[r])
+//         // randomquestion.choices = randomquestion.choices.splice(r, 1)
+//         let r = Math.floor(Math.random() * randomquestion.length)
+//         let addedthingy = randomquestion.choices[r]
+//         randomanswerlist.push(addedthingy)
+//         randomquestion.choices = randomquestion.choices.splice(r, 1)
+//     }
+//     console.log(randomanswerlist)
+//     randomquestion.choices = randomanswerlist
+//     randomanswerlist = []
+// }
 
 // I need to add datasets to each answer
 // Display new question and answers
 function addq() {
     // if no more questions, return 
-    if (qlist.length === 0) {
+    if (qlist.length <= 0) {
         console.log('no u')
         return
         // endgame functin goes here
