@@ -62,7 +62,8 @@ function qrandom() {
 //     randomanswerlist = []
 // }
 
-// I need to add datasets to each answer
+
+
 // Display new question and answers
 function addq() {
     // if no more questions, return 
@@ -78,8 +79,6 @@ function addq() {
     }
 }
 
-
-// Change .textContent to check for dataset instead
 // Checks if answer is correct
 function answerCheck() {
     if (event.target.textContent === randomquestion.answer) {
@@ -94,6 +93,10 @@ function answerCheck() {
 // Answer 1 - 4 clicked
 document.addEventListener('click', event => {
     if (event.target.classList.contains('q-btn')) {
+        if (event.target === document.getElementById('answer-0')) {
+            console.log('this is answer 0')
+            answerCheck()
+        }
         if (event.target === document.getElementById('answer-1')) {
             console.log('this is answer 1')
             answerCheck()
@@ -104,10 +107,6 @@ document.addEventListener('click', event => {
         }
         if (event.target === document.getElementById('answer-3')) {
             console.log('this is answer 3')
-            answerCheck()
-        }
-        if (event.target === document.getElementById('answer-4')) {
-            console.log('this is answer 4')
             answerCheck()
         }
         addq()
@@ -121,3 +120,11 @@ document.getElementById('start').addEventListener('click', event => {
     document.getElementById('answerlist').classList.remove('d-none')
     addq()
 })
+
+
+// When start button is clicked
+// start button removed
+// answerList is displayed
+// addq function:
+// check if q.list is at the end, if so, endGame
+// if q.list has questions, random q is selected
