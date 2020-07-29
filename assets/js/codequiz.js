@@ -76,6 +76,15 @@ function resultPage() {
     console.log('gameover')
 }
 
+// Submit Highscore
+document.addEventListener('click', event => {
+    event.preventDefault()
+    if (event.target.id === 'submitScore') {
+        console.log('score is submit ooooo')
+    }
+    console.log(event.target)
+})
+
 // Add next randomquestion and push to page
 function addq() {
     // Check if questions remain
