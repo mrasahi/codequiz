@@ -18,6 +18,10 @@ Clicking multiple times within the 1 sec transition between questions will still
 
 Multiple clicks will still register in the question choices.
 
+> Possible fix is to set a variable called `isActive` with a boolean that switches when a button is clicked. When switched, it will add `disabled` to class of clickable buttons. `isActive` will change booleans again after the 1 sec setInterval.
+
+**I didn't use buttons!**
+
 # Requirements
 ```
 GIVEN I am taking a code quiz

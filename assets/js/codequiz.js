@@ -32,7 +32,7 @@ let q3 = {
 // Declare variables
 let qlist = [q0, q1, q2, q3]
 let score = 0
-let time = 90
+let time = 9
 let randomquestion
 let randomchoices
 
@@ -58,7 +58,8 @@ function resultPage() {
     document.getElementById('answerlist').textContent = ''
     document.getElementById('scoreTime').classList.toggle('d-none')
     document.getElementById('q-prompt').textContent = 'Quiz Complete! Here are your results!'
-
+    document.getElementById('mainContent').append('you did it')
+    
     console.log('gameover')
 }
 
@@ -125,12 +126,13 @@ document.addEventListener('click', event => {
     }
 })
 
-// Timer function
+// Timer function 1 sec
 function timer() {
     let clockStopper = setInterval(() => {
         time--
         document.getElementById('time').textContent = time
         if (time <= 0) {
+            // Stop timer and go to results page
             clearInterval(clockStopper)
             resultPage()
         }
