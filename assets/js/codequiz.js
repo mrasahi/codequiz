@@ -184,9 +184,12 @@ function answerBg() {
         if (document.getElementById(`choice${i}`).dataset.choice === randomquestion.answer) {
             document.getElementById(`choice${i}`).classList.add('bg-success')
             document.getElementById(`choice${i}`).classList.add('disabled')
+            document.getElementById(`choice${i}`).classList.add('text-white')
+            document.getElementById(`choice${i}`).classList.add('font-weight-bold')
         } else {
             document.getElementById(`choice${i}`).classList.add('bg-danger')
             document.getElementById(`choice${i}`).classList.add('disabled')
+            document.getElementById(`choice${i}`).classList.add('text-dark')
         }
     }
 }
@@ -218,20 +221,6 @@ document.addEventListener('click', event => {
     }
 })
 
-
-clockStopper = setInterval(() => {
-    if (resultPageReached !== true) {
-        console.log(time)
-        time--
-        document.getElementById('time').textContent = time
-
-        if (time <= 0) {
-            clearInterval(clockStopper)
-            resultPage()
-        }
-    }
-}, 1000)
-
 // Start Button
 document.getElementById('start').addEventListener('click', () => {
     console.log('start clicked')
@@ -240,6 +229,17 @@ document.getElementById('start').addEventListener('click', () => {
     document.getElementById('score').textContent = score
     document.getElementById('time').textContent = time
     addq()
-    clockStopper
+    clockStopper = setInterval(() => {
+        if (resultPageReached !== true) {
+            console.log(time)
+            time--
+            document.getElementById('time').textContent = time
+    
+            if (time <= 0) {
+                clearInterval(clockStopper)
+                resultPage()
+            }
+        }
+    }, 1000)
 })
 

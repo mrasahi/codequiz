@@ -20,7 +20,11 @@ Clicking an answer will highlight the correct answer in green and incorrect in r
 
 Correct answers add to the score. Incorrect answers subtract time.
 
+<img src="./assets/img/preview1" width = "100%">
 
+<img src="./assets/img/preview2" width = "100%">
+
+<img src="./assets/img/preview3" width = "100%">
 
 
 
