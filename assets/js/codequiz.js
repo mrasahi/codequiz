@@ -57,16 +57,20 @@ function addq() {
     document.getElementById('q-prompt').textContent = randomquestion.question
     for (let i = 0; i < randomquestion.choices.length; i++) {
         document.getElementById(`answer-${i}`).textContent = randomquestion.choices[i]
+        document.getElementById(`answer-${i}`).classList.remove('bg-success')
     }
 }
 
 // Checks if answer is correct
 function answerCheck() {
     if (event.target.textContent === randomquestion.answer) {
+        event.target.classList.add('bg-success')
         score++
         document.getElementById('score').textContent = score
         console.log('correct')
     } else {
+        time -= 10
+        document.getElementById('time').textContent = time
         console.log('incorrect')
     }
 }
@@ -99,6 +103,7 @@ document.addEventListener('click', event => {
     } else { }
 })
 
+
 // Start Button
 document.getElementById('start').addEventListener('click', event => {
     console.log('start clicked')
@@ -106,4 +111,5 @@ document.getElementById('start').addEventListener('click', event => {
     document.getElementById('answerlist').classList.toggle('d-none')
     document.getElementById('scoreTime').classList.toggle('d-none')
     addq()
+    // start timer function goes here
 })

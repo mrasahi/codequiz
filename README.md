@@ -6,6 +6,7 @@ Used bootstrap for layout.
 # Side notes
 ```
 Putting new questions on the page would be easier if I created new elements to overwrite each time.
+This is especially helpful when the class also changes each time.
 I already had things setup with displays and textContent before learning about that method.
 The choices in the question prompts were put into arrays to shuffle their index before putting them up. Not enough time to do so...
 ```
