@@ -35,6 +35,8 @@ let score = 0
 let time = 9
 let randomquestion
 let randomchoices
+// Grabs leaderboard in localStorage. Defaults to empty array
+let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || []
 
 // Question Querry randomizer
 function qrandom() {
@@ -66,21 +68,41 @@ function resultPage() {
                 <button id="submitScore" class="btn btn-lg btn-primary">Submit</button>
             </div>
         </form>
-        <details class="lead">
-            <summary>View High Scores</summary>
-            <ol class="list-group" id="highscore">
-                
-            </ol>
-        </details>    
+        <br>
+        <h2 class="text-center">Leaderboard</h2>
+        <hr>
+        <ol class="list-group" id="highscore">
+        
+        </ol>
 `
     console.log('gameover')
 }
 
 // Submit Highscore
 document.addEventListener('click', event => {
+    // prevent default HTML form thingy
     event.preventDefault()
     if (event.target.id === 'submitScore') {
         console.log('score is submit ooooo')
+        // Make username and score into an object and push into leaderboard
+        leaderboard.push({
+            username: document.getElementById('username').value,
+            score: score
+          })
+        console.log(leaderboard)
+        localStorage.setItem('leaderboard', JSON.stringify(leaderboard))
+        // sort from highest to lowest score
+        leaderboard.sort((a, b) => {
+            return b.score - a.score
+          })
+        for (let i = 0; i < leaderboard.length; i++) {
+            let ranker = document.createElement('li')
+            ranker.innerHTML = `
+              ${leaderboard[i].username}: ${leaderboard[i].score}
+            `
+            document.getElementById('highscore').append(ranker)
+        }
+        
     }
     console.log(event.target)
 })
