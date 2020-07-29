@@ -45,25 +45,6 @@ function qrandom() {
     console.log(qlist)
 }
 
-// DOESNT WORK
-// Randomize answer index function
-// function randomanswers() {
-//     for (let i = randomquestion.choices.length; i > 0; i--) {
-//         // let r = Math.floor(Math.random() * randomquestion.choices.length)
-//         // randomanswerlist.push(randomquestion.choices[r])
-//         // randomquestion.choices = randomquestion.choices.splice(r, 1)
-//         let r = Math.floor(Math.random() * randomquestion.length)
-//         let addedthingy = randomquestion.choices[r]
-//         randomanswerlist.push(addedthingy)
-//         randomquestion.choices = randomquestion.choices.splice(r, 1)
-//     }
-//     console.log(randomanswerlist)
-//     randomquestion.choices = randomanswerlist
-//     randomanswerlist = []
-// }
-
-
-
 // Display new question and answers
 function addq() {
     // if no more questions, return 
@@ -82,6 +63,8 @@ function addq() {
 // Checks if answer is correct
 function answerCheck() {
     if (event.target.textContent === randomquestion.answer) {
+        score++
+        document.getElementById('score').textContent = score
         console.log('correct')
     } else {
         console.log('incorrect')
@@ -109,7 +92,10 @@ document.addEventListener('click', event => {
             console.log('this is answer 3')
             answerCheck()
         }
-        addq()
+        // 1 sec delay inbetween questions
+        setTimeout(() => {
+            addq()
+        }, 1000);
     } else { }
 })
 
@@ -117,14 +103,7 @@ document.addEventListener('click', event => {
 document.getElementById('start').addEventListener('click', event => {
     console.log('start clicked')
     document.getElementById('start').remove()
-    document.getElementById('answerlist').classList.remove('d-none')
+    document.getElementById('answerlist').classList.toggle('d-none')
+    document.getElementById('scoreTime').classList.toggle('d-none')
     addq()
 })
-
-
-// When start button is clicked
-// start button removed
-// answerList is displayed
-// addq function:
-// check if q.list is at the end, if so, endGame
-// if q.list has questions, random q is selected

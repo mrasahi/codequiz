@@ -16,10 +16,14 @@
     <h1 class="text-center mt-5">Code Quiz!</h1>
     <p class="text-center font-italic">-by Makoto Asahi</p>
 
-    <!-- <main class="container bg-light px-5 py-3"> -->
     <main class="jumbotron container">
         <!-- Timer goes here -->
-        <p id="q-prompt">
+        <div id="scoreTime" class="d-none">
+            <p>Score: <span id="score">0</span></p>
+            <p>Time: <span id="time">90</span></p>
+        </div>
+        <!-- Question prompt is goes here -->
+        <p id="q-prompt" class="lead font-weight-bold">
             Code Quiz! Answer the following questions as best as you can. You have 90 seconds for the quiz.
             Incorrect answers will penalize your time. Correct answers will add to your score.
             At the end of the quiz, you can log your highscores on the leaderboard.
