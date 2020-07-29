@@ -34,6 +34,7 @@ let qlist = [q0, q1, q2, q3]
 let score = 0
 let time = 90
 let randomquestion
+let randomchoices
 
 // Question Querry randomizer
 function qrandom() {
@@ -41,12 +42,23 @@ function qrandom() {
     randomquestion = qlist[i]
     qlist.splice(i, 1)
     console.log(qlist)
+    // Index Shuffler
+    let shuffledIndex = []
+    for (let i = 0; i < randomquestion.choices.length; i) {
+        let r = Math.floor(Math.random() * randomquestion.choices.length)
+        shuffledIndex.push(randomquestion.choices[r])
+        randomquestion.choices.splice(r, 1)
+    }
+    randomquestion.choices = shuffledIndex
 }
 
 // Placeholder gameover
 function resultPage() {
     // Clears answerlist before results show up
     document.getElementById('answerlist').textContent = ''
+    document.getElementById('scoreTime').classList.toggle('d-none')
+    document.getElementById('q-prompt').textContent = 'Quiz Complete! Here are your results!'
+
     console.log('gameover')
 }
 
