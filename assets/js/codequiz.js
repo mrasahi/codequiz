@@ -7,7 +7,7 @@ let q0 = {
 
 let q1 = {
     question: 'What is my last name?',
-    choices: ['Asahi', 'Quintin', 'Calum', 'Another Mike'],
+    choices: ['Asahi', 'Quintin', 'Calum', 'Small Mike'],
     answer: 'Asahi'
 }
 
@@ -32,7 +32,7 @@ let q3 = {
 // Declare variables
 let qlist = [q0, q1, q2, q3]
 let score = 0
-let time = 9
+let time = 90
 let randomquestion
 let randomchoices
 // Grabs leaderboard in localStorage. Defaults to empty array
@@ -97,7 +97,9 @@ document.addEventListener('click', event => {
           })
         for (let i = 0; i < leaderboard.length; i++) {
             let ranker = document.createElement('li')
+            ranker.className = 'list-group-item'
             ranker.innerHTML = `
+              <span class="font-weight-bold">${i +1}. </span>
               ${leaderboard[i].username}: ${leaderboard[i].score}
             `
             document.getElementById('highscore').append(ranker)
