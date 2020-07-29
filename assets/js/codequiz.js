@@ -45,6 +45,8 @@ function qrandom() {
 
 // Placeholder gameover
 function resultPage() {
+    // Clears answerlist before results show up
+    document.getElementById('answerlist').textContent = ''
     console.log('gameover')
 }
 
@@ -56,9 +58,12 @@ function addq() {
         resultPage()
         return
     }
+    // qrandom prepares the next random question to use
     qrandom()
+    // Writes qrandom prompt into page and resets the answerlist
     document.getElementById('q-prompt').textContent = randomquestion.question
     document.getElementById('answerlist').textContent = ''
+    // Loop to create li to push onto page.
     for (let i = 0; i < randomquestion.choices.length; i++) {
         let pageChoice = document.createElement('li')
         pageChoice.className = 'list-group-item q-btn'
@@ -68,15 +73,19 @@ function addq() {
     }
 }
 
-
-
 // Answer Check function
 function answerCheck() {
-    if (event.target.dataset.choice = randomquestion.answer) {
+    if (event.target.dataset.choice === randomquestion.answer) {
         console.log('correct')
+        score += 10
+        document.getElementById('score').textContent = score
     } else {
         console.log('incorrect')
+        time -= 5
+        document.getElementById('time').textContent = time
     }
+    // Debug what is clicked
+    console.log(event.target)
 }
 
 // Answer 1 - 4 clicked
@@ -84,7 +93,7 @@ document.addEventListener('click', event => {
     if (event.target.classList.contains('q-btn')) {
         console.log('qbtn clicked')
         answerCheck()
-        // Run this no matter which button is pressed
+        // After any qbtn clicked, wait 1 sec and run addq
         setTimeout(() => {
             addq()
         }, 1000);
@@ -101,6 +110,8 @@ document.getElementById('start').addEventListener('click', () => {
     console.log('start clicked')
     document.getElementById('start').remove()
     document.getElementById('scoreTime').classList.toggle('d-none')
+    document.getElementById('score').textContent = score
+    document.getElementById('time').textContent = time
     addq()
     // start timer function goes here
 })
