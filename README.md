@@ -1,15 +1,16 @@
 # codequiz
 Homework03 - Makoto Asahi
 # Summary
+```
 Used bootstrap for layout.
+Changed from overwriting existing HTML text to just append a generated list each time.
+> Old js renamed to scrapped.js
 
-# Side notes
 ```
-Putting new questions on the page would be easier if I created new elements to overwrite each time.
-This is especially helpful when the class also changes each time.
-I already had things setup with displays and textContent before learning about that method.
-The choices in the question prompts were put into arrays to shuffle their index before putting them up. Not enough time to do so...
-```
+# Current bugs
+Clicking multiple times within the 1 sec transition between questions will still run the answerChecks for that question set.
+
+Multiple clicks will still register.
 
 # Requirements
 ```

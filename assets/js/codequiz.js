@@ -34,81 +34,72 @@ let qlist = [q0, q1, q2, q3]
 let score = 0
 let time = 90
 let randomquestion
-let randomanswerlist = []
 
 // Question Querry randomizer
 function qrandom() {
     let i = [Math.floor(Math.random() * qlist.length)]
     randomquestion = qlist[i]
     qlist.splice(i, 1)
-    // randomanswers()
     console.log(qlist)
 }
 
-// Display new question and answers
+// Placeholder gameover
+function resultPage() {
+    console.log('gameover')
+}
+
+// Add next randomquestion and push to page
 function addq() {
-    // if no more questions, return 
+    // Check if questions remain
     if (qlist.length <= 0) {
-        console.log('no u')
+        console.log('going to results page')
+        resultPage()
         return
-        // endgame functin goes here
     }
     qrandom()
     document.getElementById('q-prompt').textContent = randomquestion.question
+    document.getElementById('answerlist').textContent = ''
     for (let i = 0; i < randomquestion.choices.length; i++) {
-        document.getElementById(`answer-${i}`).textContent = randomquestion.choices[i]
-        document.getElementById(`answer-${i}`).classList.remove('bg-success')
+        let pageChoice = document.createElement('li')
+        pageChoice.className = 'list-group-item q-btn'
+        pageChoice.dataset.choice = randomquestion.choices[i]
+        pageChoice.textContent = randomquestion.choices[i]
+        document.getElementById('answerlist').append(pageChoice)
     }
 }
 
-// Checks if answer is correct
+
+
+// Answer Check function
 function answerCheck() {
-    if (event.target.textContent === randomquestion.answer) {
-        event.target.classList.add('bg-success')
-        score++
-        document.getElementById('score').textContent = score
+    if (event.target.dataset.choice = randomquestion.answer) {
         console.log('correct')
     } else {
-        time -= 10
-        document.getElementById('time').textContent = time
         console.log('incorrect')
     }
 }
 
-
-// This could be cleaned up better
 // Answer 1 - 4 clicked
 document.addEventListener('click', event => {
     if (event.target.classList.contains('q-btn')) {
-        if (event.target === document.getElementById('answer-0')) {
-            console.log('this is answer 0')
-            answerCheck()
-        }
-        if (event.target === document.getElementById('answer-1')) {
-            console.log('this is answer 1')
-            answerCheck()
-        }
-        if (event.target === document.getElementById('answer-2')) {
-            console.log('this is answer 2')
-            answerCheck()
-        }
-        if (event.target === document.getElementById('answer-3')) {
-            console.log('this is answer 3')
-            answerCheck()
-        }
-        // 1 sec delay inbetween questions
+        console.log('qbtn clicked')
+        answerCheck()
+        // Run this no matter which button is pressed
         setTimeout(() => {
             addq()
         }, 1000);
-    } else { }
+    }
 })
 
+// Timer function
+function timer() {
+    console.log('timer started')
+}
 
 // Start Button
-document.getElementById('start').addEventListener('click', event => {
+document.getElementById('start').addEventListener('click', () => {
     console.log('start clicked')
     document.getElementById('start').remove()
-    document.getElementById('answerlist').classList.toggle('d-none')
     document.getElementById('scoreTime').classList.toggle('d-none')
     addq()
     // start timer function goes here
