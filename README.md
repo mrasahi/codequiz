@@ -1,16 +1,22 @@
 # codequiz
 Homework03 - Makoto Asahi
 # Summary
-```
 Used bootstrap for layout.
+
 Changed from overwriting existing HTML text to just append a generated list each time.
 > Old js renamed to scrapped.js
 
-```
-# Current bugs
-Clicking multiple times within the 1 sec transition between questions will still run the answerChecks for that question set.
+Questions are randomly pulled from a questions list
 
-Multiple clicks will still register.
+The pulled question has its index randomized, making them show up on the page in random order
+
+A new `li` is made to house the question choices, then added onto the page
+
+
+# Current bugs
+Clicking multiple times within the 1 sec transition between questions will still run the answerChecks from that question set.
+
+Multiple clicks will still register in the question choices.
 
 # Requirements
 ```

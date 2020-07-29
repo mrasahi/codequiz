@@ -127,6 +127,14 @@ document.addEventListener('click', event => {
 
 // Timer function
 function timer() {
+    let clockStopper = setInterval(() => {
+        time--
+        document.getElementById('time').textContent = time
+        if (time <= 0) {
+            clearInterval(clockStopper)
+            resultPage()
+        }
+    }, 1000);
     console.log('timer started')
 }
 
