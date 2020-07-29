@@ -59,7 +59,7 @@ function resultPage() {
     document.getElementById('scoreTime').classList.toggle('d-none')
     document.getElementById('q-prompt').textContent = 'Quiz Complete! Here are your results!'
     document.getElementById('mainContent').append('you did it')
-    
+    // put more stuff here
     console.log('gameover')
 }
 
@@ -92,8 +92,10 @@ function answerBg() {
     for (let i = 0; i < randomquestion.choices.length; i++) {
         if (document.getElementById(`choice${i}`).dataset.choice === randomquestion.answer) {
             document.getElementById(`choice${i}`).classList.add('bg-success')
+            document.getElementById(`choice${i}`).classList.add('disabled')
         } else {
             document.getElementById(`choice${i}`).classList.add('bg-danger')
+            document.getElementById(`choice${i}`).classList.add('disabled')
         }
     }
 }
