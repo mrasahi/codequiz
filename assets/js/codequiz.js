@@ -1,4 +1,4 @@
-// Question Qurerry
+// Question List
 let q0 = {
     question: 'What is my first name?',
     choices: ['Quintin', 'Calum', 'Makoto', 'Big Mike'],
@@ -66,16 +66,18 @@ let q9 = {
 //     answer: ''
 // }
 
+
 // Declare variables
 let qlist = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9]
 let score = 0
 let time = 90
 let randomquestion
 let randomchoices
+let resultPageReached = false
 // Grabs leaderboard in localStorage. Defaults to empty array
 let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || []
 
-// Question Querry randomizer
+// Question List randomizer
 function qrandom() {
     let i = [Math.floor(Math.random() * qlist.length)]
     randomquestion = qlist[i]
@@ -93,6 +95,7 @@ function qrandom() {
 
 // Results Page render
 function resultPage() {
+    resultPageReached = true
     document.getElementById('mainContent').innerHTML = `
             <h1 class="text-center">Quiz Complete!</h1>
         <p class="lead font-weight-bold">Your score is: ${score}</p>
@@ -141,9 +144,9 @@ document.addEventListener('click', event => {
             `
             document.getElementById('highscore').append(ranker)
         }
-
     }
-    console.log(event.target)
+    // Debug checker
+    // console.log(event.target)
 })
 
 // Add next randomquestion and push to page
@@ -155,7 +158,7 @@ function addq() {
         return
     }
     if (time <= 0) {
-        clearInterval(timer)
+        clearInterval(time)
         resultPage()
         return
     }
@@ -207,7 +210,6 @@ function answerCheck() {
 // Answer 1 - 4 clicked
 document.addEventListener('click', event => {
     if (event.target.classList.contains('q-btn')) {
-        console.log('qbtn clicked')
         answerCheck()
         // After any qbtn clicked, wait 1 sec and run addq
         setTimeout(() => {
@@ -216,21 +218,19 @@ document.addEventListener('click', event => {
     }
 })
 
-// Timer function 1 sec
-function timer() {
-    let timer = setInterval(() => {
+
+clockStopper = setInterval(() => {
+    if (resultPageReached !== true) {
+        console.log(time)
+        time--
+        document.getElementById('time').textContent = time
+
         if (time <= 0) {
-            // Stop timer and go to results page
-            clearInterval(timer)
+            clearInterval(clockStopper)
             resultPage()
         }
-        time--
-        // Added because time id is deleted completely later
-        if (document.getElementById('time') !== null) {
-            document.getElementById('time').textContent = time
-        }
-    }, 1000);
-}
+    }
+}, 1000)
 
 // Start Button
 document.getElementById('start').addEventListener('click', () => {
@@ -240,6 +240,6 @@ document.getElementById('start').addEventListener('click', () => {
     document.getElementById('score').textContent = score
     document.getElementById('time').textContent = time
     addq()
-    timer()
+    clockStopper
 })
 

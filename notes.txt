@@ -16,4 +16,8 @@ Made another check for time in addq.
 
 The results page will render twice, but not do anything outwardly
 
+If the quiz is finished before the timer, the resultsPage will wipe and redisplay when time is up.
+
+ResultPageReached variable added to check and stop the timer
+
 CSS and Layout is lacking...
