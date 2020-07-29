@@ -79,9 +79,21 @@ function addq() {
     for (let i = 0; i < randomquestion.choices.length; i++) {
         let pageChoice = document.createElement('li')
         pageChoice.className = 'list-group-item q-btn'
+        pageChoice.id = `choice${i}`
         pageChoice.dataset.choice = randomquestion.choices[i]
         pageChoice.textContent = randomquestion.choices[i]
         document.getElementById('answerlist').append(pageChoice)
+    }
+}
+
+// Answer bg change
+function answerBg() {
+    for (let i = 0; i < randomquestion.choices.length; i++) {
+        if (document.getElementById(`choice${i}`).dataset.choice === randomquestion.answer) {
+            document.getElementById(`choice${i}`).classList.add('bg-success')
+        } else {
+            document.getElementById(`choice${i}`).classList.add('bg-danger')
+        }
     }
 }
 
@@ -98,6 +110,7 @@ function answerCheck() {
     }
     // Debug what is clicked
     console.log(event.target)
+    answerBg()
 }
 
 // Answer 1 - 4 clicked
@@ -125,5 +138,6 @@ document.getElementById('start').addEventListener('click', () => {
     document.getElementById('score').textContent = score
     document.getElementById('time').textContent = time
     addq()
-    // start timer function goes here
+    timer()
 })
+
