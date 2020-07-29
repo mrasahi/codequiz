@@ -52,14 +52,27 @@ function qrandom() {
     randomquestion.choices = shuffledIndex
 }
 
-// Placeholder gameover
+// Results Page render
 function resultPage() {
-    // Clears answerlist before results show up
-    document.getElementById('answerlist').textContent = ''
-    document.getElementById('scoreTime').classList.toggle('d-none')
-    document.getElementById('q-prompt').textContent = 'Quiz Complete! Here are your results!'
-    document.getElementById('mainContent').append('you did it')
-    // put more stuff here
+    document.getElementById('mainContent').innerHTML = `
+            <h1 class="text-center">Quiz Complete!</h1>
+        <p class="lead font-weight-bold">Your score is: ${score}</p>
+        <p class="lead font-weight-bold">Log your high score in the form below</p>
+        <hr>
+        <form>
+            <div class="form-group">
+                <label for="username">Name:</label>
+                <input type="text" class="form-control my-3" id="username" placeholder="Your name...">
+                <button id="submitScore" class="btn btn-lg btn-primary">Submit</button>
+            </div>
+        </form>
+        <details class="lead">
+            <summary>View High Scores</summary>
+            <ol class="list-group" id="highscore">
+                
+            </ol>
+        </details>    
+`
     console.log('gameover')
 }
 
@@ -68,6 +81,10 @@ function addq() {
     // Check if questions remain
     if (qlist.length <= 0) {
         console.log('going to results page')
+        resultPage()
+        return
+    }
+    if (time <= 0) {
         resultPage()
         return
     }
