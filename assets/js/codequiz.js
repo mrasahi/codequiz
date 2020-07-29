@@ -18,14 +18,38 @@ let q2 = {
 }
 
 let q3 = {
-    question: 'THE ANSWER IS 2',
-    choices: ['WRONG 1', 'YEES', 'NOO', 'NOT THIS ONE'],
-    answer: 'YEES'
+    question: 'What is the default page usually called in HTML?',
+    choices: ['index.html', 'default.html', 'html.html', 'index'],
+    answer: 'index.html'
+}
+
+let q4 = {
+    question: 'Which of the following is a styling library for CSS?',
+    choices: ['jQuery', 'Bootstrap', 'index.html', 'app.js'],
+    answer: 'Bootstrap'
+}
+
+let q5 = {
+    question: 'In CSS, what does " * " affect when styling?',
+    choices: ['none', 'following', 'all', 'only'],
+    answer: 'all'
+}
+
+let q6 = {
+    question: 'In HTML, how high in number do the header tags go?',
+    choices: ['10', '4', '5', '6'],
+    answer: '6'
+}
+
+let q7 = {
+    question: '',
+    choices: ['', '', '', ''],
+    answer: ''
 }
 
 // let q = {
 //     question: '',
-//     choices: [],
+//     choices: ['', '', '', ''],
 //     answer: ''
 // }
 
