@@ -20,12 +20,16 @@ Clicking an answer will highlight the correct answer in green and incorrect in r
 
 Correct answers add to the score. Incorrect answers subtract time.
 
+The quiz is complete once all questions are answered or time has run out.
+
+Leaderboard is logged into localStorage.
+
+
 <img src="./assets//img/preview1.jpg" width = "100%">
 
 <img src="./assets//img/preview2.jpg" width = "100%">
 
 <img src="./assets//img/preview3.jpg" width = "100%">
-
 
 
 # Requirements
