@@ -1,7 +1,11 @@
 # codequiz
 Homework03 - Makoto Asahi
+
+https://mrasahi.github.io/codequiz/
 # Summary
 Used bootstrap for layout.
+
+Clicking `Start Quiz` will start a timer and put a question on the page.
 
 Changed from overwriting existing HTML text to just append a generated list each time.
 > Old js renamed to scrapped.js
@@ -12,19 +16,15 @@ The pulled question has its index randomized, making them show up on the page in
 
 A new `li` is made to house the question choices, then added onto the page
 
+Clicking an answer will highlight the correct answer in green and incorrect in red
 
-# Bugs
-Clicking multiple times within the 1 sec transition between questions will still run the answerChecks from that question set.
+Correct answers add to the score. Incorrect answers subtract time.
 
-Multiple clicks will still register in the question choices.
 
-~~Possible fix is to set a variable called `isActive` with a boolean that switches when a button is clicked. When switched, it will add `disabled` to class of clickable buttons. `isActive` will change booleans again after the 1 sec setInterval.~~
 
-**Adding the `disabled` class to the bg change worked**
 
-~~Answering a question as the time hits below 1 will put up a new question~~
 
-The results page will render twice, but not do anything outwardly
+
 
 # Requirements
 ```

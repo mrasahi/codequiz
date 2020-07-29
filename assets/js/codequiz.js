@@ -1,6 +1,6 @@
 // Question Qurerry
 let q0 = {
-    question: 'What is my name?',
+    question: 'What is my first name?',
     choices: ['Quintin', 'Calum', 'Makoto', 'Big Mike'],
     answer: 'Makoto'
 }
@@ -19,12 +19,12 @@ let q2 = {
 
 let q3 = {
     question: 'What is the default page usually called in HTML?',
-    choices: ['index.html', 'default.html', 'html.html', 'index'],
+    choices: ['index.html', 'default.html', 'html.html', 'html'],
     answer: 'index.html'
 }
 
 let q4 = {
-    question: 'Which of the following is a styling library for CSS?',
+    question: 'In CSS, which of the following is a styling library?',
     choices: ['jQuery', 'Bootstrap', 'index.html', 'app.js'],
     answer: 'Bootstrap'
 }
@@ -37,15 +37,28 @@ let q5 = {
 
 let q6 = {
     question: 'In HTML, how high in number do the header tags go?',
-    choices: ['10', '4', '5', '6'],
-    answer: '6'
+    choices: ['h10', 'h4', 'h5', 'h6'],
+    answer: 'h6'
 }
 
 let q7 = {
-    question: '',
-    choices: ['', '', '', ''],
-    answer: ''
+    question: 'In Javascript, how is "get element by id" camel cased?',
+    choices: ['getElementById', 'Getelementbyid', 'GETELEMENTBYID', 'getelementbyid'],
+    answer: 'getElementById'
 }
+
+let q8 = {
+    question: 'In HTML, where is the script tag usually located?',
+    choices: ['inside header', 'inside style', 'top of body', 'bottom of body'],
+    answer: 'bottom of body'
+}
+
+let q9 = {
+    question: 'In Javascript, what does " ! " mean?',
+    choices: ['explosion', 'not', 'strong', 'bold'],
+    answer: 'not'
+}
+
 
 // let q = {
 //     question: '',
@@ -54,7 +67,7 @@ let q7 = {
 // }
 
 // Declare variables
-let qlist = [q0, q1, q2, q3]
+let qlist = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9]
 let score = 0
 let time = 90
 let randomquestion
@@ -112,23 +125,23 @@ document.addEventListener('click', event => {
         leaderboard.push({
             username: document.getElementById('username').value,
             score: score
-          })
+        })
         console.log(leaderboard)
         localStorage.setItem('leaderboard', JSON.stringify(leaderboard))
         // sort from highest to lowest score
         leaderboard.sort((a, b) => {
             return b.score - a.score
-          })
+        })
         for (let i = 0; i < leaderboard.length; i++) {
             let ranker = document.createElement('li')
             ranker.className = 'list-group-item'
             ranker.innerHTML = `
-              <span class="font-weight-bold">${i +1}. </span>
+              <span class="font-weight-bold">${i + 1}. </span>
               ${leaderboard[i].username}: ${leaderboard[i].score}
             `
             document.getElementById('highscore').append(ranker)
         }
-        
+
     }
     console.log(event.target)
 })
@@ -142,6 +155,7 @@ function addq() {
         return
     }
     if (time <= 0) {
+        clearInterval(timer)
         resultPage()
         return
     }
@@ -182,7 +196,7 @@ function answerCheck() {
         document.getElementById('score').textContent = score
     } else {
         console.log('incorrect')
-        time -= 5
+        time = time - 5
         document.getElementById('time').textContent = time
     }
     // Debug what is clicked
@@ -204,16 +218,18 @@ document.addEventListener('click', event => {
 
 // Timer function 1 sec
 function timer() {
-    let clockStopper = setInterval(() => {
-        time--
-        document.getElementById('time').textContent = time
+    let timer = setInterval(() => {
         if (time <= 0) {
             // Stop timer and go to results page
-            clearInterval(clockStopper)
+            clearInterval(timer)
             resultPage()
         }
+        time--
+        // Added because time id is deleted completely later
+        if (document.getElementById('time') !== null) {
+            document.getElementById('time').textContent = time
+        }
     }, 1000);
-    console.log('timer started')
 }
 
 // Start Button
